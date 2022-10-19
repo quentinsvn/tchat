@@ -17,7 +17,7 @@ exports.register = async (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    sUser.findOne({ email: req.body.email })
+    sUser.findOne({ user_name: req.body.user_name })
     .then(user => {
       if (!user) {
         return res.status(401).json({ error: 'Utilisateur introuvable' });
@@ -29,7 +29,7 @@ exports.login = (req, res, next) => {
           }
           res.status(200).json({
             userId: user._id, 
-            name: user.name,
+            user_name: user.user_name,
             token: jwt.sign(
                 { userId: user._id },
                 process.env.JWT_SECRET,
@@ -60,7 +60,7 @@ exports.loginFromToken = (req, res, next) => {
       
       res.status(200).json({
         userId: user._id, 
-        name: user.name,
+        user_name: user.user_name,
         token: jwt.sign(
             { userId: user._id },
             process.env.JWT_SECRET,
