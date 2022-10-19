@@ -34,5 +34,6 @@ document.getElementById('login').addEventListener('submit', (e) => {
     })
     function saveJWT(token){
         window.localStorage.setItem('jwt', token)
+        window.localStorage.setItem('user_name', form.elements.user_name.value)
       }
   })

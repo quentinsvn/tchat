@@ -1,6 +1,15 @@
 (function () {
     const server = 'http://127.0.0.1:3000'
     const socket = io(server);
+
+    // On récupère le token de l'utilisateur
+    const token = localStorage.getItem('jwt');
+    const user_name = localStorage.getItem('user_name');
+
+    // Si le token n'existe pas, on redirige vers la page de login
+    if (!token) {
+        window.location.href = './login.html';
+    }
     
     socket.on('notification', (data) => {
         console.log('Message depuis le seveur:', data);
@@ -40,7 +49,7 @@
 
         let msgAuthor = document.createElement('div');
         msgAuthor.classList.add('name');
-        msgAuthor.innerHTML = "Quentin";
+        msgAuthor.innerHTML = user_name;
 
         let msgMessage = document.createElement('div');
         msgMessage.classList.add('message');
