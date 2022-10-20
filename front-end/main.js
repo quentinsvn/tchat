@@ -1,6 +1,11 @@
 (function () {
     const server = 'http://127.0.0.1:3000'
     const socket = io(server);
+
+    // Redirection to login if user not token
+    if (!localStorage.getItem('jwt')) {
+        window.location.href = './login.html'
+    }
     
     socket.on('notification', (data) => {
         console.log('Message depuis le seveur:', data);
