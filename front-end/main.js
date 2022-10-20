@@ -2,19 +2,9 @@
     const server = 'http://127.0.0.1:3000'
     const socket = io(server);
 
-<<<<<<< HEAD
     // Redirection to login if user not token
     if (!localStorage.getItem('jwt')) {
         window.location.href = './login.html'
-=======
-    // On récupère le token de l'utilisateur
-    const token = localStorage.getItem('jwt');
-    const user_name = localStorage.getItem('user_name');
-
-    // Si le token n'existe pas, on redirige vers la page de login
-    if (!token) {
-        window.location.href = './login.html';
->>>>>>> b81b1963363257f7845a97df03a7052d44fcbfb7
     }
     
     socket.on('notification', (data) => {
