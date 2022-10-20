@@ -2,6 +2,8 @@
     const server = 'http://127.0.0.1:3000'
     const socket = io(server);
 
+    let user_name = localStorage.getItem('user_name');
+
     // Redirection to login if user not token
     if (!localStorage.getItem('jwt')) {
         window.location.href = './login.html'
