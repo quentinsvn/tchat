@@ -2,9 +2,19 @@
     const server = 'http://127.0.0.1:3000'
     const socket = io(server);
 
+<<<<<<< HEAD
     // Redirection to login if user not token
     if (!localStorage.getItem('jwt')) {
         window.location.href = './login.html'
+=======
+    // On récupère le token de l'utilisateur
+    const token = localStorage.getItem('jwt');
+    const user_name = localStorage.getItem('user_name');
+
+    // Si le token n'existe pas, on redirige vers la page de login
+    if (!token) {
+        window.location.href = './login.html';
+>>>>>>> b81b1963363257f7845a97df03a7052d44fcbfb7
     }
     
     socket.on('notification', (data) => {
@@ -18,7 +28,6 @@
     })
     
     let chat = document.getElementById('chat');
-    let message = document.getElementsByClassName('message');
 
     console.log(document.forms.message)
 
@@ -30,6 +39,8 @@
         socket.emit('chat', {
             data: inputMessage
         })
+
+        document.forms.message.inputMessage.value = '';
     })
 
     socket.on('notification', function(notif) {
@@ -44,7 +55,7 @@
 
         let msgAuthor = document.createElement('div');
         msgAuthor.classList.add('name');
-        msgAuthor.innerHTML = "Quentin";
+        msgAuthor.innerHTML = user_name;
 
         let msgMessage = document.createElement('div');
         msgMessage.classList.add('message');
